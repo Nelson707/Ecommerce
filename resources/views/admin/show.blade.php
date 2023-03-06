@@ -26,6 +26,7 @@
 
                 <table class="table">
                     <tr class="bg-info">
+                        <th class="text-dark">#</th>
                         <th class="text-dark">Title</th>
                         <th class="text-dark">Description</th>
                         <th class="text-dark">Image</th>
@@ -37,6 +38,7 @@
 
                     @foreach($product as $product)
                         <tr>
+                            <td>{{ $product->id }}</td>
                             <td>{{ $product->title }}</td>
                             <td>{{ $product->description }}</td>
                             <td>

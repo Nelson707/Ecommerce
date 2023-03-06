@@ -6,23 +6,23 @@
     <style href="text/css">
         .div_center{
             text-align: center;
-            padding-top: 40px;
+            padding-top: 20px;
+            padding-bottom: 30px;
         }
 
         .h2_font{
-            font-size: 40px;
-            padding-bottom: 40px;
+            font-size: 30px;
+            padding-bottom: 20px;
         }
 
         .input_color{
             color: #0a0a0a;
+            border: none;
         }
 
-        .center {
-            width: 50%;
-            text-align: center;
-            margin: 30px auto auto;
-            border: 3px solid white;
+        .add-btn{
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
     </style>
 </head>
@@ -55,19 +55,23 @@
 
                         <input class="input_color" type="text" name="category" placeholder="Category Name">
 
-                        <input class="btn btn-primary" type="submit" name="submit" value="Add Category">
+                        <input class="btn btn-primary add-btn" type="submit" name="submit" value="Add Category">
                     </form>
                 </div>
 
-                <table class="center">
-                    <tr>
-                        <td>Category Name</td>
-                        <td>Action</td>
+                    <h1 class="mx-auto" style="width: 200px; font-size: 30px">All Categories</h1>
+
+                <table class="table">
+                    <tr class="bg-info">
+                        <td class="text-dark">#</td>
+                        <td class="text-dark">Category Name</td>
+                        <td class="text-dark">Action</td>
                     </tr>
 
                     @foreach($data as $data)
 
                     <tr>
+                        <td>{{$data->id}}</td>
                         <td>{{$data->category_name}}</td>
                         <td>
                             <a onclick="return confirm('Are you sure you want to delete the category?')" href="{{ url('delete_category',$data->id) }}" class="btn btn-danger">Delete</a>
