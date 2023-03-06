@@ -66,8 +66,4 @@ class AdminController extends Controller
         return view('admin.show',compact('product'));
     }
 
-    public function admin_dashboard()
-    {
-        return view('admin.admin_dashboard');
-    }
 }
