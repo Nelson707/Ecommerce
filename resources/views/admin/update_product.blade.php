@@ -3,11 +3,6 @@
 <head>
     <!-- Required meta tags -->
     @include('admin.css')
-    <style type="text/css">
-        h1{
-            padding-bottom: 15px;
-        }
-    </style>
 </head>
 <body>
 <div class="container-scroller">
