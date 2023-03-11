@@ -78,6 +78,11 @@
         <div class="cart-summary">
             <h3 style="font-size: 20px"><strong>Cart Summary</strong></h3>
             <span><strong>Subtotal:</strong> {{ $totalPrice }}</span>
+
+            <h1 style="margin-top: 20px; margin-bottom: 20px">Confirm Order</h1>
+
+            <a href="{{ url('cash_order') }}" class="btn btn-primary">Cash On delivery</a>
+            <a href="" class="btn btn-warning">Pay Using Card</a>
         </div>
     </div>
 </div>
