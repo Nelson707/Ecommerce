@@ -82,7 +82,7 @@
             <h1 style="margin-top: 20px; margin-bottom: 20px">Confirm Order</h1>
 
             <a href="{{ url('cash_order') }}" class="btn btn-primary">Cash On delivery</a>
-            <a href="" class="btn btn-warning">Pay Using Card</a>
+            <a href="{{ url('stripe', $totalPrice) }}" class="btn btn-warning">Pay Using Card</a>
         </div>
     </div>
 </div>

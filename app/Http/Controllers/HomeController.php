@@ -8,6 +8,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Session;
+use Stripe;
 
 class HomeController extends Controller
 {
@@ -134,5 +136,40 @@ class HomeController extends Controller
         }
 
         return redirect()->back()->with('message','Order Received. We will communicate further instructions shortly');
+    }
+
+    public function stripe($totalPrice)
+    {
+        return view('home.stripe', compact('totalPrice'));
+    }
+
+    public function stripePost(Request $request, $totalPrice)
+
+    {
+
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+
+
+        Stripe\Charge::create ([
+
+            "amount" => $totalPrice * 100,
+
+            "currency" => "usd",
+
+            "source" => $request->stripeToken,
+
+            "description" => "Thanks for your payment."
+
+        ]);
+
+
+
+        Session::flash('success', 'Payment successful!');
+
+
+
+        return back();
+
     }
 }
