@@ -5,26 +5,51 @@
 <head>
 
     <title>Card Payment</title>
+    <base href="/public">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
+    <!-- font awesome style -->
+    <link href="home/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="home/css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="home/css/responsive.css" rel="stylesheet" />
+
+    <style>
+        .payment-table{
+            font-size: 15px;
+        }
+
+        .payment-table input{
+            font-size: 15px;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
+<div class="hero_area">
+    <!-- header section starts -->
+    <span style="font-size: 18px;">@include('home.header')</span>
+    <!-- end header section -->/
 
 
 <div class="container">
 
 
 
-    <h1>Card Payment - Total Amount {{ $totalPrice }}</h1>
+    <h1 style="text-align: center; font-size: 18px; padding-bottom: 20px"><strong>Total amount Ksh{{ $totalPrice }}</strong></h1>
 
 
 
-    <div class="row">
+    <div class="row payment-table">
 
         <div class="col-md-6 col-md-offset-3">
 
@@ -158,7 +183,9 @@
 
                             <div class="col-xs-12">
 
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>
+                                <input type="submit" value="Pay now Ksh {{ $totalPrice }}" style="background: #0a58ca; width: 100%; border-radius: 5px">
+
+{{--                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now {{ $totalPrice }}</button>--}}
 
                             </div>
 
@@ -179,10 +206,23 @@
 
 
 </div>
+</div>
 
 
 
 </body>
+
+<!-- footer start -->
+@include('home.footer')
+<!-- footer end -->
+
+<div class="cpy_">
+    <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
+
+        Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+
+    </p>
+</div>
 
 
 
@@ -325,5 +365,14 @@
     });
 
 </script>
+
+<!-- jQery -->
+<script src="home/js/jquery-3.4.1.min.js"></script>
+<!-- popper js -->
+<script src="home/js/popper.min.js"></script>
+<!-- bootstrap js -->
+<script src="home/js/bootstrap.js"></script>
+<!-- custom js -->
+<script src="home/js/custom.js"></script>
 
 </html>

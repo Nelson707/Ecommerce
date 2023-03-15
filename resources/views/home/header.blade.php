@@ -33,7 +33,7 @@
 
                     <form class="form-inline">
                         <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <i class="fa fa-search" aria-hidden="true" style="font-size: 15px"></i>
                         </button>
                     </form>
 
