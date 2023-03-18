@@ -51,7 +51,7 @@ Route::get('/orders',[AdminController::class,'orders']);
 
 Route::get('/delivered/{id}',[AdminController::class,'delivered']);
 
-
+Route::get('/print_pdf/{id}',[AdminController::class,'print_pdf']);
 
 
 
