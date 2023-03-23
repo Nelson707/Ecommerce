@@ -27,7 +27,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/redirect',[HomeController::class,'redirect'])->middleware('Auth','verified');
+Route::get('/redirect',[HomeController::class,'redirect'])->middleware('auth','verified');
 
 Route::get('/view_category',[AdminController::class,'view_category']);
 
@@ -52,6 +52,13 @@ Route::get('/orders',[AdminController::class,'orders']);
 Route::get('/delivered/{id}',[AdminController::class,'delivered']);
 
 Route::get('/print_pdf/{id}',[AdminController::class,'print_pdf']);
+
+Route::get('/send_email/{id}',[AdminController::class,'send_email']);
+
+Route::post('/send_user_email/{id}',[AdminController::class,'send_user_email']);
+
+
+
 
 
 

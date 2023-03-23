@@ -34,6 +34,7 @@
                             <th class="text-dark">Image</th>
                             <th class="text-dark">Delivery confirmation</th>
                             <th class="text-dark">Print PDF</th>
+                            <th class="text-dark">Send Email</th>
                         </tr>
 
                         @foreach($order as $order)
@@ -61,6 +62,10 @@
                                 <td>
                                     <a href="{{ url('print_pdf',$order->id) }}" class="btn btn-secondary">Print PDF</a>
                                 </td>
+                                <td>
+                                    <a href="{{ url('send_email',$order->id) }}" class="btn btn-info">Send Email</a>
+                                </td>
+
                             </tr>
                         @endforeach
                     </table>
