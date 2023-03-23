@@ -57,6 +57,7 @@ Route::get('/send_email/{id}',[AdminController::class,'send_email']);
 
 Route::post('/send_user_email/{id}',[AdminController::class,'send_user_email']);
 
+Route::get('/search',[AdminController::class,'searchOrders']);
 
 
 
@@ -77,3 +78,9 @@ Route::get('/cash_order',[HomeController::class,'cash_order']);
 Route::get('/stripe/{totalPrice}',[HomeController::class,'stripe']);
 
 Route::post('stripe/{totalPrice}', [HomeController::class,'stripePost'])->name('stripe.post');
+
+Route::get('/show_order',[HomeController::class,'show_order']);
+
+Route::get('/cancel_order/{id}',[HomeController::class,'cancel_order']);
+
+

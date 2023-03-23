@@ -23,7 +23,25 @@ class HomeController extends Controller
         $role=Auth::user()->getAttributeValue('role');
         if($role=="1")
         {
-            return view('admin.home');
+            $total_products = product::all()->count();
+            $total_orders = order::all()->count();
+            $total_users = user::all()->count();
+
+            $order = order::all();
+            $total_revenue = 0;
+
+            foreach ($order as $order)
+            {
+                $total_revenue = $total_revenue + $order->price;
+            }
+
+            $total_delivered = order::where('delivery_status','=','Delivered')->get()->count();
+
+            $total_processing = order::where('delivery_status','=','Processing')->get()->count();
+
+
+            return view('admin.home', compact('total_products','total_orders','total_users','total_revenue','total_delivered','total_processing'));
+
         }
         else
         {
@@ -197,9 +215,31 @@ class HomeController extends Controller
 
         Session::flash('success', 'Payment successful!');
 
-
-
         return back();
 
+    }
+
+    public function show_order()
+    {
+        if (Auth::id())
+        {
+            $user = Auth::user();
+            $userId = $user->id;
+            $order = order::where('user_id','=',$userId)->get();
+
+            return view('home.order', compact('order'));
+        }
+        else
+        {
+            return redirect('login');
+        }
+    }
+
+    public function cancel_order($id)
+    {
+        $order = order::find($id);
+        $order->delivery_status = 'You cancelled the order';
+        $order->save();
+        return redirect()->back();
     }
 }

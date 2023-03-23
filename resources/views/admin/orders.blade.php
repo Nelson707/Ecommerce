@@ -19,6 +19,14 @@
 
                 <h1 class="text-center font-weight-bold text-uppercase">All Orders</h1>
 
+                <div style="margin: 10px 0">
+                    <form action="{{ url('search') }}" method="get">
+                        @csrf
+                        <input type="text" name="search" placeholder="Search Orders..." style="color: #0a0a0a">
+                        <input type="submit" value="Search" class="btn btn-info">
+                    </form>
+                </div>
+
                 <div class="table-responsive">
                     <table class="table">
                         <tr class="bg-info">
@@ -37,7 +45,7 @@
                             <th class="text-dark">Send Email</th>
                         </tr>
 
-                        @foreach($order as $order)
+                        @forelse($order as $order)
                             <tr>
                                 <td>{{ $order->name }}</td>
                                 <td>{{ $order->email }}</td>
@@ -54,9 +62,9 @@
                                 </td>
                                 <td>
                                     @if($order->delivery_status=='Processing')
-                                        <a href="{{ url('delivered', $order->id) }}" onclick="return confirm('Are you sure the product has been delivered?')" class="btn btn-primary">Delivered</a>
+                                        <a href="{{ url('delivered', $order->id) }}" onclick="return confirm('Are you sure the product has been delivered?')" class="btn btn-success">Confirm</a>
                                     @else
-                                        <p style="color: #00bb00">Delivered</p>
+                                        <p style="color: #00bb00">Confirmed</p>
                                     @endif
                                 </td>
                                 <td>
@@ -67,7 +75,15 @@
                                 </td>
 
                             </tr>
-                        @endforeach
+
+                        @empty
+                            <tr>
+                                <td colspan="16">
+                                    No Records Found.
+                                </td>
+                            </tr>
+
+                        @endforelse
                     </table>
                 </div>
 
