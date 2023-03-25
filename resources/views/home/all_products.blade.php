@@ -28,20 +28,9 @@
     <!-- header section starts -->
     @include('home.header')
     <!-- end header section -->
-    <!-- slider section -->
-{{--    @include('home.slider')--}}
-    <!-- end slider section -->
-
-<!-- why section -->
-
-<!-- end why section -->
-
-<!-- arrival section -->
-{{--@include('home.new_arrival')--}}
-<!-- end arrival section -->
 
 <!-- product section -->
-@include('home.products')
+@include('home.product_view')
 <!-- end product section -->
 
 
@@ -162,7 +151,7 @@
 @include('home.subscribe')
 <!-- end subscribe section -->
 <!-- client section -->
-@include('home.client')
+{{--@include('home.client')--}}
 <!-- end client section -->
 <!-- footer start -->
 @include('home.footer')

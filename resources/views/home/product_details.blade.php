@@ -28,6 +28,13 @@
     @include('home.header')
     <!-- end header section -->
 
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+            <button type="button" class="close" style="float: right;" data-dismiss="alert" aria-hidden="true">X</button>
+        </div>
+    @endif
+
     <div class="col-sm-6 col-md-4 col-lg-4" style="margin: auto; width: 50%; padding: 30px">
         <div class="box">
             <div class="img-box" style="margin-bottom: 30px">

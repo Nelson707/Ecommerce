@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Notifications\SendEmailNotification;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 
@@ -15,12 +16,20 @@ class AdminController extends Controller
 {
     public function view_category()
     {
-        $data = category::all();
-        return view('admin.category', compact('data'));
+        if (Auth::id())
+        {
+            $data = category::all();
+            return view('admin.category', compact('data'));
+        }
+        else
+        {
+            return redirect('login');
+        }
     }
 
     public function add_category(Request $request)
     {
+
         $data = new category;
         $data->category_name = $request->category;
         $data->save();
@@ -30,20 +39,30 @@ class AdminController extends Controller
 
     public function delete_category($id)
     {
+
         $data = category::find($id);
         $data->delete();
         return redirect()->back()->with('message','Category deleted successfully');
+
     }
 
 //    products
     public function view_product()
     {
-        $category = category::all();
-        return view('admin.products', compact('category'));
+        if (Auth::id())
+        {
+            $category = category::all();
+            return view('admin.products', compact('category'));
+        }
+        else
+        {
+            return redirect('login');
+        }
     }
 
     public function add_product(Request $request)
     {
+
         $product = new product;
 
         $product->title=$request->title;
@@ -63,30 +82,38 @@ class AdminController extends Controller
 
         return redirect()->back()->with('message','Product added successfully');
 
+
     }
 
     public function show_product()
     {
+
         $product = product::all();
         return view('admin.show',compact('product'));
+
     }
 
     public function delete_product($id)
     {
+
         $product = product::find($id);
         $product->delete();
         return redirect()->back()->with('message','Product deleted successfully');
+
     }
 
     public function update_product($id)
     {
+
         $product = product::find($id);
         $category = category::all();
         return view('admin.update_product', compact('product','category'));
+
     }
 
     public function update_product_confirm(Request $request,$id)
     {
+
         $product = product::find($id);
 
         $product->title = $request->title;
@@ -110,35 +137,49 @@ class AdminController extends Controller
         $product->save();
 
         return redirect()->back()->with('message','Product Updated Successfully');
+
     }
 
     public function orders()
     {
-        $order = order::all();
-        return view('admin.orders', compact('order'));
+        if (Auth::id())
+        {
+            $order = order::all();
+            return view('admin.orders', compact('order'));
+        }
+        else
+        {
+            return redirect('login');
+        }
     }
 
     public function delivered($id)
     {
+
         $order = order::find($id);
         $order->delivery_status = "Delivered";
         $order->payment_status = "Paid";
         $order->save();
 
         return redirect()->back();
+
     }
 
     public function print_pdf($id)
     {
+
         $order = order::find($id);
         $pdf = PDF::loadView('admin.pdf', compact('order'));
         return $pdf->download('order_details.pdf');
+
     }
 
     public function send_email($id)
     {
+
         $order = order::find($id);
         return view('admin.email_info', compact('order'));
+
     }
 
     public function send_user_email(Request $request, $id)
