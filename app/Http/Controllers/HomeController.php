@@ -17,7 +17,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $product = product::paginate(3);
+        $product = product::paginate(6);
         $comment = comment::orderby('id','desc')->get();
         $reply = reply::all();
         return view('home.userpage', compact('product','comment','reply'));
@@ -49,7 +49,7 @@ class HomeController extends Controller
         }
         else
         {
-            $product = product::paginate(3);
+            $product = product::paginate(6);
 
             $comment = comment::orderby('id','desc')->get();
 
